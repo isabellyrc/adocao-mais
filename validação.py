@@ -37,44 +37,46 @@ def validar_data(data):
     except:
         return False
 
+        
+
 
 def validar_texto(texto):
     return texto.strip() != ""
 
 # teste de validaçoes 
 
-nome = input("nome do animal: ")
-especie = input("especie do animal: ")
-idade = int(input("idade do animal: "))
-comportmento = input("comportamneto do animal: ")
-data = input("digita a data: ")
+# nome = input("nome do animal: ")
+# especie = input("especie do animal: ")
+# idade = (input("idade do animal: "))
+# comportmento = input("comportamneto do animal: ")
+# data = input("digita a data (dd/mm/aaaa): ")
 
-if validar_texto(nome):
-    print(nome)
+# if validar_texto(nome):
+#     print(nome)
 
-else:
-    print("nome invalido")
+# else:
+#     print("nome invalido")
 
-if validar_especie(especie):
-    print(especie)
+# if validar_especie(especie):
+#     print(especie)
 
-else:
-    print("especie invalida")
+# else:
+#     print("especie invalida")
 
-if validar_idade(idade):
-    print(idade)
+# if validar_idade(idade):
+#     print(idade)
 
-else:
-    print("idade invalida")
+# else:
+#     print("idade invalida")
 
-if validar_comportamento(comportmento):
-    print(comportmento)
+# if validar_comportamento(comportmento):
+#     print(comportmento)
 
-else:
-    print("comportamento invalido")
+# else:
+#     print("comportamento invalido")
 
-if validar_data(data):
-    print(data)
+# if validar_data(data):
+#     print(data)
 
-else:
-    print("data invalida")
+# else:
+#     print("data invalida")
