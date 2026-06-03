@@ -1,0 +1,30 @@
+Sistema de Validação
+ O sistema de validação foi desenvolvido para garantir que os dados cadastrados dos animais
+ estejam corretos antes de serem armazenados. Isso evita erros de preenchimento e aumenta a confiabilidade 
+ das informações do sistema.
+
+Validação de Idade
+ A função `validar_idade()` verifica se o valor informado pode ser convertido para um número inteiro utilizando 
+ `try` e `except`. Após a conversão, são realizadas verificações para impedir que sejam cadastradas idades menores
+ ou iguais a zero e maiores que trinta anos. Caso a idade esteja dentro dos limites estabelecidos, a função retorna 
+ `True`; caso contrário, retorna `False`.
+
+Validação de Espécie
+ A função `validar_especie()` verifica se a espécie digitada pelo usuário pertence à lista de espécies aceitas pelo
+ sistema: cachorro, gato ou outro. Para evitar problemas com letras maiúsculas e minúsculas, é utilizado o método `lower()`.
+
+Validação de Comportamento
+ A função `validar_comportamento()` confere se o comportamento informado está entre as opções permitidas pelo sistema. 
+ Essa validação impede que sejam registrados comportamentos inexistentes ou escritos incorretamente.
+
+Validação de Data
+ A função `validar_data()` utiliza a biblioteca `datetime` para verificar se a data informada existe e está no formato correto (dd/mm/aaaa).
+ Caso a conversão da data seja realizada com sucesso, a função retorna `True`; caso contrário, retorna `False`.
+
+Validação de Texto
+ A função `validar_texto()` garante que campos obrigatórios não sejam deixados vazios. O método `strip()` remove espaços em branco antes 
+ da verificação, impedindo que entradas compostas apenas por espaços sejam consideradas válidas.
+
+Importância das Validações
+ As validações foram implementadas para evitar inconsistências nos dados cadastrados, melhorar a experiência do usuário e garantir que apenas 
+ informações corretas sejam armazenadas pelo sistema.

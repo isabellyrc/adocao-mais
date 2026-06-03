@@ -1,0 +1,30 @@
+Sistema de Sugestões
+ O sistema de sugestões foi criado para fornecer recomendações automáticas com base nas características dos animais cadastrados.
+ As sugestões auxiliam a equipe do centro de adoção e os futuros adotantes na tomada de decisões relacionadas aos cuidados e ao ambiente
+ mais adequado para cada animal.
+
+Sugestões Baseadas na Idade
+ A idade do animal é utilizada para identificar necessidades específicas.
+ * Filhotes recebem a sugestão de maior atenção e acompanhamento, pois estão em fase de desenvolvimento.
+ * Animais idosos recebem recomendações de consultas veterinárias frequentes e monitoramento da saúde.
+
+Sugestões Baseadas no Comportamento
+ O comportamento do animal influencia diretamente as recomendações geradas.
+ * Animais agitados recebem a sugestão de viver em locais com mais espaço, como casas com quintal.
+ * Animais calmos podem se adaptar melhor a apartamentos ou ambientes menores.
+ * Animais agressivos recebem recomendações de treinamento especializado e acompanhamento comportamental.
+ * Animais carinhosos podem ser indicados para famílias que procuram maior interação com o pet.
+
+Sugestões Baseadas na Espécie
+ As recomendações também variam de acordo com a espécie do animal.
+ * Cachorros recebem sugestões relacionadas a passeios, exercícios físicos e atividades de socialização.
+ * Gatos recebem recomendações para disponibilização de arranhadores, brinquedos e enriquecimento ambiental.
+
+Funcionamento
+ As sugestões são geradas automaticamente após o cadastro do animal. O sistema analisa os dados informados e apresenta mensagens 
+ específicas de acordo com as regras definidas na programação.
+
+Importância das Sugestões
+ O objetivo principal é auxiliar na escolha do melhor lar para cada animal e orientar os cuidados necessários, contribuindo para
+ uma adoção mais responsável e para o bem-estar dos pets.
+
