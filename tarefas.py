@@ -148,7 +148,24 @@ def excluir_tarefa():
     limpar_terminal()
     listar_tarefa()
 
-    tarefa_id = 
+    tarefa_id = input(f"\nID da tarefa para excluir: ").strip()
+    tarefas = arquivos.carregar_tarefas()
+
+    tarefa = None
+
+    for tarefa_atual in tarefas:
+        if tarefa_atual["id"] == tarefa_id:
+            tarefa = tarefa_atual
+            break
+
+    if tarefa is None:
+        print("Tarefa não encontrada")
+        return
+    
+    tarefas.remove(tarefa)
+    arquivos.salvar_tarefas(tarefas)
+    print("tarefa Excluida!")
+    
 
 def mostrar_alertas():
     pass
