@@ -127,9 +127,15 @@ def editar_tarefas():
         except ValueError:
             print("Data inválida. Nada foi Alterado")
             return
+    
+    concluida = input(f"Concluida? sim/nao [{tarefa['concluida']}]: ").strip().lower()
+
+    if concluida in ["sim", "nao"]: 
+        tarefa["concluida"] = concluida 
+
+    arquivos.salvar_tarefas(tarefas)
+    print("Tarefa atualizada!")
             
-
-
 
 def excluir_tarefa():
     pass
