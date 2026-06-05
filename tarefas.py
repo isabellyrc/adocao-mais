@@ -2,13 +2,12 @@ from datetime import datetime, date
 import arquivos
 import os
 
-tarefas = [] #substituir por aquivos.py de heitor
+#substituir por arquivos.py de heitor
 
 TIPOS_VALIDOS = ["vacinas", "banho", "consulta", "treino"]
 
 def limpar_terminal(): 
     os.system("cls" if os.name == "nt" else "clear")
-
 
 
 def cadastrar_tarefa():
@@ -34,7 +33,7 @@ def cadastrar_tarefa():
     animal_selecionado = None
     for animal_atual in animais:
 
-        if animal_selecionado in (animal_atual.get["id"]) == int(id_animal): #comparando ID do animal
+        if str(animal_atual["id"]) == id_animal: #comparando ID do animal
             animal_selecionado = animal_atual
             break
 
@@ -110,7 +109,7 @@ def editar_tarefas():
 
     tarefa = None
     for tarefa_atual in tarefas:
-        if tarefa_atual["id"] == tarefa_id:
+        if str(tarefa_atual["id"]) == tarefa_id:
             tarefa = tarefa_atual
             break
 
@@ -154,7 +153,7 @@ def excluir_tarefa():
     tarefa = None
 
     for tarefa_atual in tarefas:
-        if tarefa_atual["id"] == tarefa_id:
+        if str(tarefa_atual["id"]) == tarefa_id:
             tarefa = tarefa_atual
             break
 
