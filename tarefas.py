@@ -61,10 +61,10 @@ def cadastrar_tarefa():
         return
     
     tarefas = arquivos.carregar_tarefas()
-    novo_id = len(tarefas) + 1
+    tarefa_id = len(tarefas) + 1
     
     tarefa = {
-        "id": novo_id,
+        "id": tarefa_id,
         "id_animal": animal_selecionado["id"],
         "animal": animal_selecionado["nome"],
         "tipo": tipo,
@@ -105,12 +105,12 @@ def editar_tarefas():
     limpar_terminal()
     listar_tarefa()
 
-    novo_id = input("\n ID da tarefa pra editar: ").strip()
+    tarefa_id = input("\n ID da tarefa pra editar: ").strip()
     tarefas = arquivos.carregar_tarefas()
 
     tarefa = None
     for tarefa_atual in tarefas:
-        if tarefa_atual["id"] == novo_id:
+        if tarefa_atual["id"] == tarefa_id:
             tarefa = tarefa_atual
             break
 
@@ -145,7 +145,10 @@ def editar_tarefas():
     print("Tarefa atualizada!")
             
 def excluir_tarefa():
-    pass
+    limpar_terminal()
+    listar_tarefa()
+
+    tarefa_id = 
 
 def mostrar_alertas():
     pass
