@@ -127,7 +127,15 @@ def editar_tarefas():
         except ValueError:
             print("Data inválida. Nada foi Alterado")
             return
-    
+        
+    print(f"Tipos disponiveis: {','.join(TIPOS_VALIDOS)}")
+    novo_tipo = input(f"Novo tipo [{tarefa['tipo']}]: ").strip().lower()
+
+    if novo_tipo in TIPOS_VALIDOS:
+        tarefa["tipo"] = novo_tipo
+    elif novo_tipo:
+        print("tipo inválido. Mantemos o anterior")
+
     concluida = input(f"Concluida? sim/nao [{tarefa['concluida']}]: ").strip().lower()
 
     if concluida in ["sim", "nao"]: 
@@ -136,7 +144,6 @@ def editar_tarefas():
     arquivos.salvar_tarefas(tarefas)
     print("Tarefa atualizada!")
             
-
 def excluir_tarefa():
     pass
 
