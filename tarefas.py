@@ -198,4 +198,28 @@ def mostrar_alertas():
 
 
 def menus_tarefas():
-    pass
+    while True:
+        print("\n--- Tarefas ---")
+        print("1 - Cadastrar")
+        print("2 - Listar")
+        print("3 - Editar")
+        print("4 - Excluir")
+        print("5 - Alertas")
+        print("0 - sair")
+
+        opcao = input("Escolha uma opcão: ").strip()
+
+        if opcao == "0":
+            break
+        elif opcao == "1":
+            cadastrar_tarefa()
+        elif opcao == "2":
+            listar_tarefa()
+        elif opcao == "3":
+            editar_tarefas()
+        elif opcao == "4":
+            excluir_tarefa()
+        elif opcao == "5":
+            mostrar_alertas()
+        else:
+            print("opcão invalida! ")
