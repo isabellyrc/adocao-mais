@@ -44,7 +44,7 @@ def cadastrar_tarefa():
     print(f"Animal selecionado: {animal_selecionado['nome']}" )
 
     
-    print(f"Tipos disponiveis: {','.join(TIPOS_VALIDOS)}")
+    print(f"Tipos disponiveis: {', '.join(TIPOS_VALIDOS)}")
 
     tipo = input("Tipo da tarefa: ").strip().lower()
 
@@ -127,15 +127,16 @@ def editar_tarefas():
             print("Data inválida. Nada foi Alterado")
             return
         
-    print(f"Tipos disponiveis: {','.join(TIPOS_VALIDOS)}")
-    novo_tipo = input(f"Novo tipo [{tarefa['tipo']}]: ").strip().lower()
+    print(f"Tipos disponiveis: {', '.join(TIPOS_VALIDOS)}")
+    novo_tipo = input(f"Escreva o novo tipo: ").strip().lower()
 
     if novo_tipo in TIPOS_VALIDOS:
         tarefa["tipo"] = novo_tipo
     elif novo_tipo:
         print("tipo inválido. Mantemos o anterior")
 
-    concluida = input(f"Concluida? sim/nao [{tarefa['concluida']}]: ").strip().lower()
+    status_atual = "Pendente" if tarefa == "nao" else "concluida"
+    concluida = input(f"Concluida? sim/nao [Atual: {status_atual}] ").strip().lower()
 
     if concluida in ["sim", "nao"]: 
         tarefa["concluida"] = concluida 
@@ -197,6 +198,7 @@ def mostrar_alertas():
 
 
 def menus_tarefas():
+    limpar_terminal()
     while True:
         print("\n--- Tarefas ---")
         print("1 - Cadastrar")
