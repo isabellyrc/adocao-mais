@@ -16,6 +16,7 @@ def cadastrar_tarefa():
     limpar_terminal()
     
     animais = arquivos.carregar_animais()
+
     if not animais:
         print("Nenhum animal cadastrado!. Cadastre um animal primeiro.")
         return
@@ -24,23 +25,20 @@ def cadastrar_tarefa():
     print("\n --- Cadastrar tarefa --- ")
 
     print("Animais disponiveis: ")
+    
     for animal_atual in animais:
         print(f" ID {animal_atual['id']} - {animal_atual['nome']} ({animal_atual['especie']})")
 
     id_animal = input("\n ID do animal: ").strip()
         
-    if not id_animal:
-        print("Erro: ID inválido")
-        return
-        
     animal_selecionado = None
     for animal_atual in animais:
 
-        if animal_selecionado in (animal_atual.get("id", -1)) == int(id_animal): #comparando ID do animal
+        if animal_selecionado in (animal_atual.get["id"]) == int(id_animal): #comparando ID do animal
             animal_selecionado = animal_atual
             break
 
-    if not animal_selecionado:
+    if animal_selecionado is None:
         print("Animal não encontrado")
         return
         
@@ -55,27 +53,28 @@ def cadastrar_tarefa():
         print("Erro: tipo inválido")
         return
     
-    data_str = input("Data prevista (DD/MM/AAAA): ").strip()
+    data = input("Data prevista (DD/MM/AAAA): ").strip()
     try:
-        data_prevista = datetime.strptime(data_str,"%d/%m/%y" ).date()
+        data_prevista = datetime.strptime(data,"%d/%m/%Y" ).date()
     except ValueError: #esse ValueErro acontece pois o strptime converte em uma data real
         print("Erro: data inválida. Use DD/MM/AAAA.")
         return
     
     tarefas = arquivos.carregar_tarefas()
+    novo_id = len(tarefas) + 1
     
     tarefa = {
-        "id": _gerar_id(tarefa),
+        "id": novo_id,
         "id_animal": animal_selecionado["id"],
         "animal": animal_selecionado["nome"],
         "tipo": tipo,
-        "data": data_prevista,
-        "concluida": "não" or "sim"
+        "data": data,
+        "concluida": "nao"
     }
 
     tarefas.append(tarefa)
     arquivos.salvar_tarefas(tarefas)
-    print(f"Tarefa '{tipo}' para {animal_selecionado} cadastrada com sucesso! ")
+    print(f"Tarefa '{tipo}' para {animal_selecionado['nome']} cadastrada com sucesso! ")
 
 def listar_tarefa():
     limpar_terminal()
@@ -89,7 +88,9 @@ def listar_tarefa():
     print("--- Lista de Tarefas --- ")
 
     for tarefas_atual in tarefas:
-        dias = _calcular_dias_restantes(tarefas_atual['data'])
+
+        data_prevista = datetime.strptime(tarefas_atual["data"], "%d/%m/%Y").date()
+        dias = (data_prevista - date.today()).days
 
         if tarefas_atual["concluida"] == "sim":
             status = "Concluída"
@@ -97,10 +98,13 @@ def listar_tarefa():
         else:
             status = "Pendente"
 
-def excluir_tarefa():
-    pass
+        print(f"\nID: {tarefas_atual['id']} | Animal{tarefas_atual['animal']} | Tipo: {tarefas_atual['tipo']}")
+        print(f"Data: {tarefas_atual['data']} | Dias restantes: {dias} | Status {status} ")
 
-def calcular_prazo():
+def editar_tarefas():
+
+
+def excluir_tarefa():
     pass
 
 def mostrar_alertas():
