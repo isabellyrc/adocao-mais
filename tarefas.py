@@ -165,10 +165,37 @@ def excluir_tarefa():
     tarefas.remove(tarefa)
     arquivos.salvar_tarefas(tarefas)
     print("tarefa Excluida!")
-    
+
 
 def mostrar_alertas():
-    pass
+    limpar_terminal()
 
-def testar_datas():
+    print("--- Alertas! ---")
+
+    tarefas = arquivos.carregar_tarefas()
+    teve_alertas = False
+
+    for tarefa_atual in tarefas:
+        if tarefa_atual["concluida"] == "sim":
+            continue #pula as já concluidas** lembrarr
+
+        data_prevista = datetime.strptime(tarefa_atual["data"], "%d/%m/%Y").date()
+        dias = (data_prevista - date.today()).days
+
+        if dias < 0:
+            print(f"ATRASADA! {tarefa_atual['animal']} - {tarefa_atual['tipo']} ({abs(dias)}) dia(s) atrás! ")
+            teve_alertas = True
+
+        elif dias == 0:
+            print(f"HOJE! {tarefa_atual['animal']} - {tarefa_atual['tipo']}")
+            teve_alertas = True
+
+        elif dias <= 3:
+            print(f"É JAJA! {tarefa_atual['animal']} - {tarefa_atual['tipo']} - em {dias} dias(s)")
+            teve_alertas = True
+    if not teve_alertas:
+        print("Nenhum alerta até o momento")
+
+
+def menus_tarefas():
     pass
