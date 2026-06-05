@@ -135,7 +135,7 @@ def editar_tarefas():
     elif novo_tipo:
         print("tipo inválido. Mantemos o anterior")
 
-    status_atual = "Pendente" if tarefa == "nao" else "concluida"
+    status_atual = "Pendente" if tarefa["concluida"] == "nao" else "Concluida"
     concluida = input(f"Concluida? sim/nao [Atual: {status_atual}] ").strip().lower()
 
     if concluida in ["sim", "nao"]: 
