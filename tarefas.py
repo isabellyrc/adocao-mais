@@ -25,7 +25,7 @@ def cadastrar_tarefa():
     print("\n --- Cadastrar tarefa --- ")
 
     print("Animais disponiveis: ")
-    
+
     for animal_atual in animais:
         print(f" ID {animal_atual['id']} - {animal_atual['nome']} ({animal_atual['especie']})")
 
@@ -102,6 +102,33 @@ def listar_tarefa():
         print(f"Data: {tarefas_atual['data']} | Dias restantes: {dias} | Status {status} ")
 
 def editar_tarefas():
+    limpar_terminal()
+    listar_tarefa()
+
+    novo_id = input("\n ID da tarefa pra editar: ").strip()
+    tarefas = arquivos.carregar_tarefas()
+
+    tarefa = None
+    for tarefa_atual in tarefas:
+        if tarefa_atual["id"] == novo_id:
+            tarefa = tarefa_atual
+            break
+
+    if tarefa is None:
+        print("Tarefa não encontrada")
+        return
+        
+    nova_data = input(f"Nova data [{tarefa['data']}]: ").strip()
+
+    if nova_data:
+        try:
+            datetime.strptime(nova_data, "%d/%m/%Y")
+            tarefa["data"] = nova_data
+        except ValueError:
+            print("Data inválida. Nada foi Alterado")
+            return
+            
+
 
 
 def excluir_tarefa():
