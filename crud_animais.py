@@ -118,7 +118,8 @@ def cadastrar_animal():
             "data_chegada" : data_chegada,
             "comportamento": comportamento,
         }
-
+        
+        
         animais.append(animal)
         arquivos.salvar_animais(animais)
         print("Animal cadastrado com sucesso! ID:", animal["id"])
@@ -239,3 +240,8 @@ def excluir_animal():
 
     except Exception as erro:
         print("Erro ao excluir animal:", erro)
+
+if __name__ == "__main__":
+    cadastrar_animal()
+    
+    
