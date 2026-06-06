@@ -17,7 +17,6 @@ from tarefas import(
    editar_tarefas,
    excluir_tarefa,
    mostrar_alertas,
-   menus_tarefas,
 )
 from validação import (
     validar_idade, 
@@ -128,19 +127,19 @@ def menu_geral():
                         cadastrar_animal()
                         pausar()
 
-                    elif resposta_menu_animais == "2":
+                    elif resposta_menu_animais == 2:
                         listar_animais()
                         pausar()
 
-                    elif resposta_menu_animais == "3":
+                    elif resposta_menu_animais == 3:
                         editar_animal()
                         pausar()
 
-                    elif resposta_menu_animais == "4":
+                    elif resposta_menu_animais == 4:
                         excluir_animal()
                         pausar()
 
-                    elif resposta_menu_animais == "0":
+                    elif resposta_menu_animais == 0:
                         print("Saindo do sistema... Até logo!")
                         break
 
@@ -174,11 +173,21 @@ def menu_geral():
 
                     if resposta_menu_sugestao == 1:
                         print("Bacana! Agora, conta um pouco mais sobre o pet:")
-                        especie = input("Espécie (ex:Cach0orro, gato, papagaio, jacaré...)").strip()
-                        idade = input("Idade: ").strip()
-                        comportamento = input("Comportamento(ex: Calmo, agitado, capeta...)").strip()
-
+                        while True:
+                            especie = input("Espécie (ex:Cach0orro, gato, papagaio, jacaré...)").strip()
+                            if validar_especie(especie):
+                                break
+                        while True:   
+                            idade = input("Idade: ").strip()
+                            if validar_idade(idade):
+                                break
+                        while True:
+                            comportamento = input("Comportamento(ex: Calmo, agitado, capeta...)").strip()
+                            if validar_comportamento(comportamento):
+                                break
+                        
                         sugestoes(especie, idade, comportamento)
+                        input ("Pressione enter para continuar... Só pressione, por favor.")
 
                     elif resposta_menu_sugestao == 2:
                         listar_animais()
@@ -193,7 +202,7 @@ def menu_geral():
 
                 print("\n" * 5)
                 print("✹" * 30)
-
+                
                 def menus_tarefas():
 
                     while True:
@@ -205,28 +214,29 @@ def menu_geral():
                         print("5 - Alertas")
                         print("0 - sair")
 
-                        opcao_menu_tarefa = input("Escolha uma opcão: ").strip()
+                        opcao_menu_tarefa = int(input("Escolha uma opcão: ")).strip()
 
-                        if opcao_menu_tarefa == "0":
+                        if opcao_menu_tarefa == 0:
                             break
 
-                        elif opcao_menu_tarefa == "1":
+                        elif opcao_menu_tarefa == 1:
                             cadastrar_tarefa()
 
-                        elif opcao_menu_tarefa == "2":
+                        elif opcao_menu_tarefa == 2:
                             listar_tarefa()
 
-                        elif opcao_menu_tarefa == "3":
+                        elif opcao_menu_tarefa == 3:
                             editar_tarefas()
 
-                        elif opcao_menu_tarefa == "4":
+                        elif opcao_menu_tarefa ==4:
                             excluir_tarefa()
 
-                        elif opcao_menu_tarefa == "5":
+                        elif opcao_menu_tarefa ==5:
                             mostrar_alertas()
 
                         else:
                             print("opcão invalida!")
+            
 
         except ValueError:
             print("Digite APENAS NÚMEROS")
