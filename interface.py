@@ -18,8 +18,57 @@ from tarefas import(
    excluir_tarefa,
    mostrar_alertas,
    menus_tarefas,
-
 )
+from validação import (
+    validar_idade, 
+    validar_especie, 
+    validar_comportamento)
+from datetime import datetime
+
+#precisei colocar o validações aqui para dar adiantamento para o código
+#contudo, quem fez as validações foi Maria Carolina, Vulgo Carol, vulgo doida de Olinda
+#um Salve pra Carol
+
+def validar_idade(idade):
+    try:
+        idade = int(idade) 
+
+        if idade <= 0:
+            print("idade abaixo de 0")
+            return False
+        
+        elif idade > 30:
+            print("idade muito alta")
+            return False
+        
+        else:
+            return True
+        
+    except:
+        print("idade invalida")
+        return False
+
+    
+def validar_especie(especie):
+    especies =["cachorro", "gato", "outro"]
+
+    return especie.lower() in especies
+
+def validar_comportamento(comportamento):
+    comportamentos = ["calmo", "agitado", "agresivo", "carinhoso", "outro"]
+
+    return comportamento.lower() in comportamentos 
+
+def validar_data(data):
+    try:
+        datetime.strptime(data, "%d/%m/%Y")
+        return True
+    except:
+        return False
+
+def validar_texto(texto):
+    return texto.strip() != ""
+
 
 # PRIMEIRA PARTE (pra limpar e deixar bonitinho)
 def limpar():
@@ -118,6 +167,7 @@ def menu_geral():
                     "Você já sabe qual o pet você procura receber a sugestão? "
                     "1- SIM! (Quero digitar e ver as dicas) 2-NÃO!(Quero ver a lista de animais registrados): "
                 )
+                
 
                 try:
                     resposta_menu_sugestao = int(input("Digite sua resposta"))
@@ -138,7 +188,7 @@ def menu_geral():
                     print("Digite um número válido")
 
             print("✹" * 30)
-
+            #um salve pro meu mano heitor que fez a parte do painel de tarefas, beijão
             if opcao == "4":
 
                 print("\n" * 5)
@@ -186,38 +236,5 @@ def menu_geral():
 
 
     
-
 # Execução do programa
 pausar()
-        
-# Execução do programa
-pausar()
-
-#             if resposta==0:
-#                 break
-#         elif resposta==1:
-#             cadastro_animal()
-#         elif resposta==2:
-#             print ("Acesso para tarefas")
-#         elif resposta==3:
-#             print ("Acesso a sugestões")
-#         elif resposta==4:
-#             print ("Acesso a Matching")
-#         else: 
-#             print ("Opção invalida, digite uma opção correta.")
-
-
-# def cadastro_animal():
-#     nome=input ("Digite o nome do animal: ")
-#     idade=int(input("Digite a idade do animal: "))
-#     raça=input("Digite a raça do animal: ")
-#     (nome, idade, raça)
-
-# print ("="*30)
-# print ("Bom dia! Qual ação você deseja executar?")
-# print ("="*30)
-# while  True:
-#     resposta= int(input("1 - Animais\n2 - Tarefas\n3 - Sugestões\n4 - Matching\n0 - Sair\n" ))
-    
-    
-    
