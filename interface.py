@@ -18,10 +18,10 @@ from tarefas import(
    excluir_tarefa,
    mostrar_alertas,
 )
-from validação import (
-    validar_idade, 
-    validar_especie, 
-    validar_comportamento)
+# from validação import (
+#     validar_idade, 
+#     validar_especie, 
+#     validar_comportamento)
 from datetime import datetime
 
 #precisei colocar o validações aqui para dar adiantamento para o código
@@ -106,9 +106,9 @@ def menu_geral():
         print("✹" * 30)
 
         try:
-            opcao = input("Escolha uma opção: ")
+            opcao = int (input("Escolha uma opção: "))
 
-            if opcao == "1":
+            if opcao == 1:
                 print("\n" * 5)
                 print("✹" * 30)
                 print("BEM VINDO AO MENU DE ANIMAIS! O QUE VOCÊ DESEJA?")
@@ -125,19 +125,19 @@ def menu_geral():
 
                     if resposta_menu_animais == 1:
                         cadastrar_animal()
-                        pausar()
+                        input ("Pressione enter para continuar... Só pressione, por favor.")
 
                     elif resposta_menu_animais == 2:
                         listar_animais()
-                        pausar()
+                        input ("Pressione enter para continuar... Só pressione, por favor.")
 
                     elif resposta_menu_animais == 3:
                         editar_animal()
-                        pausar()
+                        input ("Pressione enter para continuar... Só pressione, por favor.")
 
                     elif resposta_menu_animais == 4:
                         excluir_animal()
-                        pausar()
+                        input ("Pressione enter para continuar... Só pressione, por favor.")
 
                     elif resposta_menu_animais == 0:
                         print("Saindo do sistema... Até logo!")
@@ -149,13 +149,13 @@ def menu_geral():
                 except ValueError:
                     print("Digite APENAS NÚMEROS")
 
-            if opcao == "2":
+            elif opcao == 2:
                 print("\n" * 5)
                 print("✹" * 30)
                 print("BEM VINDO AO SISTEMA DE MATCHING! O QUE VOCÊ DESEJA?")
                 print("✹" * 30)
 
-            if opcao == "3":
+            elif opcao == 3:
                 print("\n" * 5)
                 print("✹" * 30)
                 print("BEM VINDO AO MENU DE SUGESTÕES!")
@@ -196,16 +196,15 @@ def menu_geral():
                 except ValueError:
                     print("Digite um número válido")
 
-            print("✹" * 30)
+             
             #um salve pro meu mano heitor que fez a parte do painel de tarefas, beijão
-            if opcao == "4":
+            elif opcao == 4:
 
                 print("\n" * 5)
                 print("✹" * 30)
                 
-                def menus_tarefas():
-
-                    while True:
+               
+                while True:
                         print("\n--- Tarefas ---")
                         print("1 - Cadastrar")
                         print("2 - Listar")
@@ -213,9 +212,11 @@ def menu_geral():
                         print("4 - Excluir")
                         print("5 - Alertas")
                         print("0 - sair")
-
-                        opcao_menu_tarefa = int(input("Escolha uma opcão: ")).strip()
-
+                        try:
+                            opcao_menu_tarefa = int(input("Escolha uma opcão: ").strip())
+                        except ValueError:
+                            print ("Digite apenas Números")
+                            continue
                         if opcao_menu_tarefa == 0:
                             break
 
@@ -237,6 +238,11 @@ def menu_geral():
                         else:
                             print("opcão invalida!")
             
+            elif opcao==0:
+                print ("Saindo...Até logo")
+                break
+            else:
+                print("Opção inválida")
 
         except ValueError:
             print("Digite APENAS NÚMEROS")
