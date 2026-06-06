@@ -2,8 +2,6 @@ from datetime import datetime, date
 import arquivos
 import os
 
-#substituir por arquivos.py de heitor
-
 TIPOS_VALIDOS = ["vacinas", "banho", "consulta", "treino"]
 
 def limpar_terminal(): 
@@ -97,7 +95,7 @@ def listar_tarefa():
         else:
             status = "Pendente"
 
-        print(f"\nID: {tarefas_atual['id']} | Animal{tarefas_atual['animal']} | Tipo: {tarefas_atual['tipo']}")
+        print(f"\nID: {tarefas_atual['id']} | Animal: {tarefas_atual['animal']} | Tipo: {tarefas_atual['tipo']}")
         print(f"Data: {tarefas_atual['data']} | Dias restantes: {dias} | Status {status} ")
 
 def editar_tarefas():
