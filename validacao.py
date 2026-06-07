@@ -4,7 +4,7 @@ def validar_idade(idade):
     try:
         idade = int(idade) 
 
-        if idade <= 0:
+        if idade < 0:
             print("idade abaixo de 0")
             return False
         
@@ -26,9 +26,10 @@ def validar_especie(especie):
     return especie.lower() in especies
 
 def validar_comportamento(comportamento):
-    comportamentos = ["calmo", "agitado", "agresivo", "carinhoso", "outro"]
+    comportamentos = ["calmo", "agitado", "agresivo", "agressivo", "carinhoso", "outro"]
 
     return comportamento.lower() in comportamentos 
+
 
 def validar_data(data):
     try:
