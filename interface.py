@@ -5,8 +5,9 @@ from crud_animais import (
     listar_animais,
     editar_animal,
     excluir_animal,
-    _idade_valida,
-    _animal_duplicado,
+
+    _buscar_simples_por_id,
+    
 )
 from sugestoes import(
     sugestoes,
@@ -17,61 +18,13 @@ from tarefas import(
    editar_tarefas,
    excluir_tarefa,
    mostrar_alertas,
+   limpar_terminal
 )
-# from validação import (
-#     validar_idade, 
-#     validar_especie, 
-#     validar_comportamento)
-from datetime import datetime
-
-#precisei colocar o validações aqui para dar adiantamento para o código
-#contudo, quem fez as validações foi Maria Carolina, Vulgo Carol, vulgo doida de Olinda
-#um Salve pra Carol
-
-def validar_idade(idade):
-    try:
-        idade = int(idade) 
-
-        if idade <= 0:
-            print("idade abaixo de 0")
-            return False
-        
-        elif idade > 30:
-            print("idade muito alta")
-            return False
-        
-        else:
-            return True
-        
-    except:
-        print("idade invalida")
-        return False
-
-    
-def validar_especie(especie):
-    especies =["cachorro", "gato", "outro"]
-
-    return especie.lower() in especies
-
-def validar_comportamento(comportamento):
-    comportamentos = ["calmo", "agitado", "agresivo", "carinhoso", "outro"]
-
-    return comportamento.lower() in comportamentos 
-
-def validar_data(data):
-    try:
-        datetime.strptime(data, "%d/%m/%Y")
-        return True
-    except:
-        return False
-
-def validar_texto(texto):
-    return texto.strip() != ""
 
 
+#prec
 # PRIMEIRA PARTE (pra limpar e deixar bonitinho)
-def limpar():
-    print("\n" * 10)
+limpar_terminal()
 
 def pausar():
     while True:
@@ -91,9 +44,9 @@ def pausar():
 # PARTE DO MENU GERAL
 def menu_geral():
     while True:
-        limpar()
+        
         print("✹" * 30)
-        print("SEJA BEM VINDO AO ADOTE+!!!\n")
+        print("ＳＥＪＡ　ＢＥＭ　ＶＩＮＤＯ　ＡＯ　ＡＤＯＴＥ＋!!!\n")
         print("Este é o menu principal.\n")
         print("Selecione abaixo o menu que você deseja acessar! ")
         print("✹" * 30)
@@ -107,9 +60,11 @@ def menu_geral():
 
         try:
             opcao = int (input("Escolha uma opção: "))
-
+            if opcao==1 or opcao==2 or opcao==4:
+                limpar_terminal()
             if opcao == 1:
-                print("\n" * 5)
+
+                limpar_terminal()
                 print("✹" * 30)
                 print("BEM VINDO AO MENU DE ANIMAIS! O QUE VOCÊ DESEJA?")
                 print("✹" * 30)
@@ -130,14 +85,17 @@ def menu_geral():
                     elif resposta_menu_animais == 2:
                         listar_animais()
                         input ("Pressione enter para continuar... Só pressione, por favor.")
+                        limpar_terminal()
 
                     elif resposta_menu_animais == 3:
                         editar_animal()
                         input ("Pressione enter para continuar... Só pressione, por favor.")
+                        limpar_terminal()
 
                     elif resposta_menu_animais == 4:
                         excluir_animal()
                         input ("Pressione enter para continuar... Só pressione, por favor.")
+                        limpar_terminal()
 
                     elif resposta_menu_animais == 0:
                         print("Saindo do sistema... Até logo!")
@@ -150,51 +108,55 @@ def menu_geral():
                     print("Digite APENAS NÚMEROS")
 
             elif opcao == 2:
-                print("\n" * 5)
+                limpar_terminal()
                 print("✹" * 30)
                 print("BEM VINDO AO SISTEMA DE MATCHING! O QUE VOCÊ DESEJA?")
                 print("✹" * 30)
 
             elif opcao == 3:
-                print("\n" * 5)
-                print("✹" * 30)
-                print("BEM VINDO AO MENU DE SUGESTÕES!")
-                print("Abaixo você irá conferir sugestões da nossa equipe obre adoção de pets! \n\n\n")
-                print("Porém, para a sugestão funcionar, você precisa saber a espécie, a idade e o comportamento do pet")
-                print("Dessa forma, podemos dar uma resposta mais acertiva!!!")
-                print(
-                    "Você já sabe qual o pet você procura receber a sugestão? "
-                    "1- SIM! (Quero digitar e ver as dicas) 2-NÃO!(Quero ver a lista de animais registrados): "
-                )
-                
+                while True:
+                    limpar_terminal()
+                    print("✹" * 30)
+                    print("BEM VINDO AO MENU DE SUGESTÕES!")
+                    print("Abaixo você irá conferir sugestões da nossa equipe obre adoção de pets! \n")
+                    print("Porém, para a sugestão funcionar, você precisa saber a espécie, a idade e o comportamento do pet\n")
+                    print("Dessa forma, podemos dar uma resposta mais acertiva!!!\n")
+                    print(
+                    "Você já sabe qual o pet você procura receber a sugestão?\n ")
+                    print("1- SIM! (Quero digitar e ver as dicas) ")
+                    print("2-NÃO!(Quero ver a lista de animais registrados):")
+                    print("3-Voltar ao menu principal ")
 
-                try:
-                    resposta_menu_sugestao = int(input("Digite sua resposta"))
-
-                    if resposta_menu_sugestao == 1:
-                        print("Bacana! Agora, conta um pouco mais sobre o pet:")
-                        while True:
-                            especie = input("Espécie (ex:Cach0orro, gato, papagaio, jacaré...)").strip()
-                            if validar_especie(especie):
-                                break
-                        while True:   
-                            idade = input("Idade: ").strip()
-                            if validar_idade(idade):
-                                break
-                        while True:
-                            comportamento = input("Comportamento(ex: Calmo, agitado, capeta...)").strip()
-                            if validar_comportamento(comportamento):
-                                break
-                        
-                        sugestoes(especie, idade, comportamento)
-                        input ("Pressione enter para continuar... Só pressione, por favor.")
-
-                    elif resposta_menu_sugestao == 2:
-                        listar_animais()
-                        input("\n Pressione enter para voltar ao menu anterior.")
-
-                except ValueError:
-                    print("Digite um número válido")
+                    try:
+                        escolha_sugestao = int(input("Escolha uma opção: "))
+        
+                        if escolha_sugestao == 0:
+                            break
+                            
+                        elif escolha_sugestao == 1:
+                            try:
+                                resposta_menu_sugestao = int(input("\nDigite o ID do animal para receber a dica: "))
+                                animal_retornado = _buscar_simples_por_id(resposta_menu_sugestao)
+                                
+                                print("\nO animal em questão é:")
+                                print(f"{animal_retornado['nome']}\n")
+                                
+                                sugestoes(animal_retornado["especie"], int(animal_retornado["idade"]), animal_retornado["comportamento"])
+                                
+                                print("✹" * 30)
+                                input("Pressione Enter para continuar e voltar para o Menu de Sugestões...")
+                                
+                            except ValueError:
+                                input(" Digite APENAS NÚMEROS válidos! Pressione Enter para tentar novamente...")
+                                
+                            except Exception:
+                                input(" Animal não encontrado! Pressione Enter para tentar novamente...")
+                                
+                        else:
+                            input("Opção inválida! Pressione Enter para tentar novamente...")
+                            
+                    except ValueError:
+                        input("Digite APENAS NÚMEROS! Pressione Enter para tentar novamente...")
 
              
             #um salve pro meu mano heitor que fez a parte do painel de tarefas, beijão
@@ -205,41 +167,51 @@ def menu_geral():
                 
                
                 while True:
-                        print("\n--- Tarefas ---")
-                        print("1 - Cadastrar")
-                        print("2 - Listar")
-                        print("3 - Editar")
-                        print("4 - Excluir")
-                        print("5 - Alertas")
-                        print("0 - sair")
+                        print("✹" * 30)
+                        print("BEM VINDO AO MENU DE TAREFAS! O QUE VOCÊ DESEJA?")
+                        print("✹" * 30)
+                        print("1 - Cadastrar Tarefa")
+                        print("2 - Listar Tarefas")
+                        print("3 - Editar Tarefa")
+                        print("4 - Excluir Tarefa")
+                        print("5 - Mostrar Alertas")
+                        print("0 - Sair do menu de tarefas")
+                        print("✹" * 30)
                         try:
                             opcao_menu_tarefa = int(input("Escolha uma opcão: ").strip())
                         except ValueError:
                             print ("Digite apenas Números")
                             continue
                         if opcao_menu_tarefa == 0:
+                            limpar_terminal()
                             break
 
                         elif opcao_menu_tarefa == 1:
                             cadastrar_tarefa()
+                            input ("Pressione enter para continuar... Só pressione, por favor.")
+                            limpar_terminal()
 
                         elif opcao_menu_tarefa == 2:
                             listar_tarefa()
-
+                            input ("Pressione enter para continuar... Só pressione, por favor.")
+                            limpar_terminal()
                         elif opcao_menu_tarefa == 3:
                             editar_tarefas()
+                            input ("Pressione enter para continuar... Só pressione, por favor.")
+                            limpar_terminal()
 
                         elif opcao_menu_tarefa ==4:
                             excluir_tarefa()
-
+                            input ("Pressione enter para continuar... Só pressione, por favor.")
+                            limpar_terminal()
                         elif opcao_menu_tarefa ==5:
                             mostrar_alertas()
-
+                            input ("Pressione enter para continuar... Só pressione, por favor.")
+                            limpar_terminal()
                         else:
                             print("opcão invalida!")
             
             elif opcao==0:
-                print ("Saindo...Até logo")
                 break
             else:
                 print("Opção inválida")
