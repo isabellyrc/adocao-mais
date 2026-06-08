@@ -1,5 +1,6 @@
 import os
 import arquivos
+import validacao
 
 
 # ════════════════════════════════════════════════════════
@@ -17,10 +18,8 @@ def _campo_vazio(valor):
 
 def _idade_valida(idade):
     """Retorna True se a idade for um número inteiro não negativo."""
-    try:
-        return int(idade) >= 0
-    except ValueError:
-        return False
+    return validacao.validar_idade(idade)
+
 
 
 def _gerar_id(animais):
@@ -42,6 +41,13 @@ def _buscar_por_id(animais, id_animal):
         except (ValueError, TypeError):
             continue
     return None
+
+
+def _buscar_simples_por_id(id_animal):
+    """Carrega os dados e busca o animal pelo ID."""
+    animais = arquivos.carregar_animais()
+    return _buscar_por_id(animais, id_animal)
+
 
 
 def _animal_duplicado(animais, nome, especie, id_ignorar=None):
@@ -101,6 +107,16 @@ def cadastrar_animal():
         # Valida idade
         if not _idade_valida(idade):
             print("Erro: idade inválida. Digite um número inteiro maior ou igual a zero.")
+            return
+
+        # Valida espécie
+        if not validacao.validar_especie(especie):
+            print("Erro: espécie inválida. Opções: cachorro, gato, outro.")
+            return
+
+        # Valida comportamento
+        if not validacao.validar_comportamento(comportamento):
+            print("Erro: comportamento inválido. Opções: calmo, agitado, agressivo, carinhoso, outro.")
             return
 
         # Valida duplicata
@@ -193,6 +209,16 @@ def editar_animal():
             print("Erro: idade inválida.")
             return
 
+        # Valida espécie
+        if not validacao.validar_especie(nova_especie):
+            print("Erro: espécie inválida. Opções: cachorro, gato, outro.")
+            return
+
+        # Valida comportamento
+        if not validacao.validar_comportamento(novo_comportamento):
+            print("Erro: comportamento inválido. Opções: calmo, agitado, agressivo, carinhoso, outro.")
+            return
+
         animal["nome"]          = novo_nome
         animal["especie"]       = nova_especie
         animal["raca"]          = nova_raca
@@ -242,6 +268,4 @@ def excluir_animal():
         print("Erro ao excluir animal:", erro)
 
 if __name__ == "__main__":
-    cadastrar_animal()
-    
-    
+    pass

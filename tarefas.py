@@ -222,4 +222,6 @@ def menus_tarefas():
             mostrar_alertas()
         else:
             print("opcão invalida! ")
-menus_tarefas()
+
+if __name__ == "__main__":
+    menus_tarefas()
