@@ -96,3 +96,32 @@ def calcular_compatibilidade(adotante, animal):
 
     return pontuacao
 
+def sugerir_animais(adotante):
+    animais = arquivos.carregar_animais()
+
+    if not animais:
+        print("Nenhum animal cadastrado no sistema para fazer o matching.")
+        return
+
+    # calcula pontuação de cada animal e guarda numa lista
+    ranking = []
+    for animal in animais:
+        pontos = calcular_compatibilidade(adotante, animal)
+        porcentagem = (pontos / 10) * 100
+        ranking.append({"animal": animal, "pontos": pontos, "porcentagem": porcentagem})
+
+    # ordena do mais compatível para o menos compatível
+    ranking.sort(key=lambda x: x["porcentagem"], reverse=True)
+
+    print(f"\n{'=' * 50}")
+    print(f"  MATCHINGS PARA: {adotante['nome'].upper()}")
+    print(f"  Prefere: {adotante['especie_desejada'].capitalize()} | Energia: {adotante['energia']} | Moradia: {adotante['moradia']}")
+    print(f"{'=' * 50}")
+
+    for item in ranking:
+        pet = item["animal"]
+        print(f"\nNome: {pet['nome']} ({pet['especie'].capitalize()} - {pet['raca']})")
+        print(f"Comportamento: {pet['comportamento'].capitalize()} | Idade: {pet['idade']} ano(s)")
+        print(f"Compatibilidade: {item['porcentagem']:.0f}%  ({item['pontos']}/10 pontos)")
+        print("-" * 50)
+
