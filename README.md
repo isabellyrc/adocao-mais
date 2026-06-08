@@ -1,70 +1,92 @@
-# adocao-mais
-Sistema de Gestão de Centro de Adoção de Animais em Python
+# 🐾 Adoção+ – Sistema de Gestão de Centro de Adoção de Animais
 
-## Sobre o projeto
+Bem-vindo ao **Adoção+**, um sistema em Python focado em facilitar o gerenciamento de abrigos de animais! Com uma interface amigável via terminal, o sistema centraliza o cadastro de pets, cruza perfis de adotantes com animais compatíveis (Matching), gerencia tarefas do dia a dia (banhos, vacinas) e oferece sugestões inteligentes de cuidados.
 
-O **Adoção+** é um sistema de gestão para centros de adoção de animais, desenvolvido em Python, com interação pelo terminal.
+---
 
-O objetivo do projeto é ajudar a organizar informações sobre cães, gatos e outros pets, facilitando o controle de cadastros, cuidados, vacinas, atividades, adoções e sugestões personalizadas para possíveis adotantes.
+## 📌 Funcionalidades Principais
 
-## Funcionalidades
+*   **🐶 Gestão de Animais (CRUD):** Cadastre, consulte, edite e remova animais do sistema.
+*   **❤️ Matching de Adoção:** Um algoritmo que calcula uma pontuação de compatibilidade entre o perfil do adotante e os animais disponíveis.
+*   **⏰ Tarefas e Alertas:** Controle de rotinas (vacinas, consultas, banhos, treinos) com cálculo de contagem regressiva e alertas de datas próximas.
+*   **💡 Sugestões Inteligentes:** Dicas de cuidados geradas automaticamente de acordo com a espécie, idade e comportamento do animal.
+*   **💾 Persistência de Dados:** Os dados são salvos de forma segura em arquivos `.csv`, garantindo que nenhuma informação seja perdida ao fechar o sistema.
 
--Cadastro, visualização, edição e exclusão de animais;
--Registro de cuidados e atividades, como vacinas, banhos, consultas e treinos;
--Contagem regressiva para tarefas importantes;
--Armazenamento dos dados em arquivos .csv;
--Sugestões personalizadas com base no perfil do animal;
--Funcionalidade extra: Matching de Adoção, que recomenda animais compatíveis com o perfil informado pelo adotante.
--Funcionalidade Extra: Matching de Adoção
+---
 
-## Funcionalidade Extra:
+## 🚀 Manual do Usuário
 
-O sistema contará com uma funcionalidade de matching entre adotante e animal.
+### Pré-requisitos
+*   **Python 3.x** instalado em sua máquina.
 
-O adotante poderá informar preferências como:
+### Como Executar o Sistema
+1. Abra o seu terminal.
+2. Navegue até a pasta do projeto:
+   ```bash
+   cd caminho/para/adocao-mais
+   ```
+3. Execute o arquivo principal da interface:
+   ```bash
+   python interface.py
+   ```
+*(Nota: O arquivo principal que gerencia o menu e a execução inicial está nomeado como `interface.py`).*
 
--Espécie desejada;
--Porte do animal;
--Nível de energia;
--Presença de crianças em casa;
--Presença de outros animais;
--Tipo de moradia.
+### Navegando pelos Menus
+Ao iniciar o programa, você será recebido por um Menu Geral intuitivo:
+*   **1 - Menu de Animais:** Para inserir novos pets que chegaram ao abrigo ou gerenciar os já existentes.
+*   **2 - Menu de Matching:** Para cadastrar o perfil de uma pessoa interessada em adotar e descobrir quais animais dão o "match" perfeito com o estilo de vida dela.
+*   **3 - Menu de Sugestões:** Receba dicas automáticas de como cuidar de um animal específico da sua base de dados (Ex: Filhotes precisam de mais atenção).
+*   **4 - Menu de Tarefas:** Acesse para cadastrar ou verificar pendências como "Vacina em 3 dias".
+*   **0 - Sair:** Encerra a aplicação e salva todos os dados em CSV automaticamente.
 
-Com base nessas informações, o sistema irá comparar os dados do adotante com os animais cadastrados e indicar os pets mais compatíveis.
+---
 
-## Tecnologias utilizadas
--Python
--Arquivos .csv
--Terminal / Linha de comando
--Como executar o projeto
--Baixe ou clone este repositório.
--Abra a pasta do projeto no terminal.
--Execute o arquivo principal:
--python main.py
+## 🏗 Estrutura do Projeto
 
-## Estrutura inicial do projeto
+A arquitetura foi dividida em módulos para facilitar o desenvolvimento em equipe, evitar conflitos e deixar o código limpo:
+
+```text
 adocao-mais/
 │
-├── main.py
-├── README.md
-└── dados/
-    ├── animais.csv
-    ├── tarefas.csv
-    ├── adocoes.csv
-    └── adotantes.csv
+├── interface.py       # Arquivo principal (Menus, fluxos e inicialização)
+├── crud_animais.py    # Lógica de Cadastro, Edição, Consulta e Exclusão de animais
+├── tarefas.py         # Gerenciamento de alertas e atividades diárias (vacinas, etc)
+├── arquivos.py        # Centraliza a leitura e gravação dos arquivos CSV
+├── matching.py        # Algoritmo de cruzamento de perfis (Adotante x Animal)
+├── sugestoes.py       # Regras automáticas para dicas de cuidados
+├── validacao.py       # Validações globais (idade negativa, campos vazios, etc)
+│
+├── dados/             # Pasta gerada automaticamente pelo sistema
+│   ├── animais.csv
+│   ├── tarefas.csv
+│   └── adotantes.csv
+│
+└── README.md          # Esta documentação
+```
 
-## Integrantes
--Isabelly Ribeiro
--Heitor Torres
--Yasmin Lopes
--Miguel Cabral
--Leandro Henrique
--Maria Carolina
+---
 
-## Status do projeto
+## 👥 Divisão Oficial de Responsabilidades (Equipe)
 
-Em desenvolvimento.
+O projeto foi construído por 6 integrantes, onde cada um focou no desenvolvimento de um módulo específico, integrado de forma coesa através de funções.
 
-## Observações
+| Integrante | Responsabilidade Principal | Arquivo(s) Base |
+| :--- | :--- | :--- |
+| **Isabelly Ribeiro** | CRUD de Animais | `crud_animais.py` |
+| **Heitor Torres** | Persistência de Dados (CSV) | `arquivos.py` |
+| **Yasmin Lopes** | Matching de Adoção & Integração | `matching.py` |
+| **Miguel Cabral** | Interface (Menus), UX e Documentação | `interface.py`, `README.md` |
+| **Leandro Henrique** | Gerenciamento de Tarefas e Alertas | `tarefas.py` |
+| **Maria Carolina** | Sugestões Inteligentes e Validações | `sugestoes.py`, `validacao.py` |
 
-Este projeto será desenvolvido sem o uso de bibliotecas externas, conforme os requisitos da atividade. As únicas bibliotecas permitidas inicialmente são os, datetime e random.
+---
+
+## 🔧 Estratégia de Desenvolvimento (Git & GitHub)
+
+Para garantir a colaboração sem atritos, a equipe seguiu um fluxo estrito de controle de versão:
+1. **Módulos Separados:** Cada programador atuou no seu próprio arquivo, importando as funcionalidades quando necessário (Ex: `from crud_animais import listar_animais`).
+2. **Branching Model:** 
+   * `main`: Produção / Entrega Final (Apenas código 100% testado).
+   * `develop`: Branch de integração da equipe.
+   * `feature/*`: Branches individuais de cada funcionalidade.
+3. **Regra de Ouro:** Ninguém comita direto na `main` ou `develop`. O fluxo utilizado foi criar a branch funcional, desenvolver as alterações e abrir um **Pull Request (PR)** para a `develop`.
