@@ -268,6 +268,4 @@ def excluir_animal():
         print("Erro ao excluir animal:", erro)
 
 if __name__ == "__main__":
-    cadastrar_animal()
-    
-    
+    pass
