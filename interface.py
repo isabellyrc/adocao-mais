@@ -20,6 +20,7 @@ from tarefas import(
    mostrar_alertas,
    limpar_terminal
 )
+from matching import menu_matching
 
 
 #prec
@@ -108,10 +109,8 @@ def menu_geral():
                     print("Digite APENAS NÚMEROS")
 
             elif opcao == 2:
-                limpar_terminal()
-                print("✹" * 30)
-                print("BEM VINDO AO SISTEMA DE MATCHING! O QUE VOCÊ DESEJA?")
-                print("✹" * 30)
+                menu_matching()
+
 
             elif opcao == 3:
                 while True:
@@ -130,27 +129,32 @@ def menu_geral():
                     try:
                         escolha_sugestao = int(input("Escolha uma opção: "))
         
-                        if escolha_sugestao == 0:
+                        if escolha_sugestao == 3:
                             break
+                            
+                        elif escolha_sugestao == 2:
+                            listar_animais()
+                            input("\nPressione Enter para continuar...")
                             
                         elif escolha_sugestao == 1:
                             try:
                                 resposta_menu_sugestao = int(input("\nDigite o ID do animal para receber a dica: "))
                                 animal_retornado = _buscar_simples_por_id(resposta_menu_sugestao)
                                 
-                                print("\nO animal em questão é:")
-                                print(f"{animal_retornado['nome']}\n")
-                                
-                                sugestoes(animal_retornado["especie"], int(animal_retornado["idade"]), animal_retornado["comportamento"])
-                                
-                                print("✹" * 30)
-                                input("Pressione Enter para continuar e voltar para o Menu de Sugestões...")
+                                if animal_retornado is None:
+                                    print("\nAnimal não encontrado!")
+                                    input("Pressione Enter para tentar novamente...")
+                                else:
+                                    print("\nO animal em questão é:")
+                                    print(f"{animal_retornado['nome']}\n")
+                                    
+                                    sugestoes(animal_retornado["especie"], int(animal_retornado["idade"]), animal_retornado["comportamento"])
+                                    
+                                    print("✹" * 30)
+                                    input("Pressione Enter para continuar e voltar para o Menu de Sugestões...")
                                 
                             except ValueError:
                                 input(" Digite APENAS NÚMEROS válidos! Pressione Enter para tentar novamente...")
-                                
-                            except Exception:
-                                input(" Animal não encontrado! Pressione Enter para tentar novamente...")
                                 
                         else:
                             input("Opção inválida! Pressione Enter para tentar novamente...")
