@@ -54,3 +54,45 @@ def cadastrar_adotante():
     arquivos.salvar_adotantes(adotantes)
     print(f"\nAdotante '{nome}' cadastrado com sucesso! ID: {id_adotante}")
     return novo_adotante
+
+def calcular_compatibilidade(adotante, animal):
+    pontuacao = 0
+
+    comportamento = animal.get("comportamento", "").lower()
+    especie = animal.get("especie", "").lower()
+
+    # +2 se a espécie desejada bate com a espécie do animal
+    if adotante.get("especie_desejada", "").lower() == especie:
+        pontuacao += 2
+
+    # +2 se o nível de energia combina com o comportamento do animal
+    energia = adotante.get("energia", "").lower()
+    if energia == "alta" and comportamento == "agitado":
+        pontuacao += 2
+    elif energia == "baixa" and comportamento == "calmo":
+        pontuacao += 2
+
+    # +2 se o tipo de moradia combina com o animal
+    moradia = adotante.get("moradia", "").lower()
+    if moradia == "casa":
+        pontuacao += 2
+    elif moradia == "apartamento":
+        if comportamento == "calmo" or especie == "gato":
+            pontuacao += 2
+
+    # +2 se tem crianças em casa e o animal é calmo ou carinhoso
+    if adotante.get("criancas", "").lower() == "sim":
+        if comportamento in ["carinhoso", "calmo"]:
+            pontuacao += 2
+    else:
+        pontuacao += 2  # sem crianças, qualquer animal é compatível
+
+    # +2 se tem outros animais e o pet é sociável
+    if adotante.get("outros_animais", "").lower() == "sim":
+        if comportamento in ["carinhoso", "calmo"]:
+            pontuacao += 2
+    else:
+        pontuacao += 2  # sem outros animais, qualquer animal é compatível
+
+    return pontuacao
+
