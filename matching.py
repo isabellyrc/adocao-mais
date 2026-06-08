@@ -125,3 +125,59 @@ def sugerir_animais(adotante):
         print(f"Compatibilidade: {item['porcentagem']:.0f}%  ({item['pontos']}/10 pontos)")
         print("-" * 50)
 
+def menu_matching():
+    while True:
+        os.system("cls" if os.name == "nt" else "clear")
+        print("✹" * 30)
+        print("   BEM VINDO AO SISTEMA DE MATCHING!")
+        print("✹" * 30)
+        print("1 - Cadastrar novo adotante e ver sugestões")
+        print("2 - Ver sugestões de adotante já cadastrado")
+        print("0 - Voltar ao menu principal")
+        print("✹" * 30)
+
+        opcao = input("Escolha uma opção: ").strip()
+
+        if opcao == "0":
+            break
+
+        elif opcao == "1":
+            os.system("cls" if os.name == "nt" else "clear")
+            adotante = cadastrar_adotante()
+            if adotante:
+                sugerir_animais(adotante)
+                input("\nPressione Enter para voltar ao menu...")
+
+        elif opcao == "2":
+            os.system("cls" if os.name == "nt" else "clear")
+            adotantes = arquivos.carregar_adotantes()
+            if not adotantes:
+                print("Nenhum adotante cadastrado ainda. Escolha a opção 1.")
+                input("\nPressione Enter para continuar...")
+                continue
+
+            print("--- Adotantes Cadastrados ---")
+            for a in adotantes:
+                print(f"ID: {a['id']} - {a['nome']} (Prefere: {a['especie_desejada'].capitalize()})")
+
+            id_escolhido = input("\nDigite o ID do adotante: ").strip()
+
+            adotante_selecionado = None
+            for a in adotantes:
+                if str(a["id"]) == id_escolhido:
+                    adotante_selecionado = a
+                    break
+
+            if adotante_selecionado:
+                os.system("cls" if os.name == "nt" else "clear")
+                sugerir_animais(adotante_selecionado)
+            else:
+                print("Adotante não encontrado.")
+
+            input("\nPressione Enter para voltar ao menu...")
+
+        else:
+            print("Opção inválida!")
+            input("\nPressione Enter para continuar...")
+
+
